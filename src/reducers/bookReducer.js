@@ -9,7 +9,7 @@ const bookReducer = (state = initialState, action) => {
         case 'BOOKS_REQUEST':
             return { ...state, loading: true, books: [], error: null };
         case 'BOOKS_SUCCESS':
-            return { ...state, loading: false, books: action.payload };
+            return { ...state, loading: false, books: Array.isArray(action.payload) ? action.payload : [] };
         case 'BOOKS_FAIL':
             return { ...state, loading: false, error: action.payload };
         default:
