@@ -19,7 +19,7 @@ import {
     Tooltip,
 } from '@mui/material';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../actions/bookActions';
 
 const FilterCard = () => {
@@ -32,6 +32,7 @@ const FilterCard = () => {
     const [sortBy, setSortBy] = useState('rating');
     const [showFilters, setShowFilters] = useState(false);
     const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.bookState);
 
     const handleSearchTypeChange = (event) => {
         setSearchType(event.target.value);
@@ -227,6 +228,7 @@ const FilterCard = () => {
                                     variant="contained"
                                     color="secondary"
                                     onClick={applyFilters}
+                                    disabled={loading}
                                     fullWidth
                                     sx={{
                                         paddingTop: '10px',
@@ -244,6 +246,7 @@ const FilterCard = () => {
                                 <Button
                                     variant="contained"
                                     color="secondary"
+                                    disabled={loading}
                                     onClick={resetFilters}
                                     fullWidth
                                     sx={{

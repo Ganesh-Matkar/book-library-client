@@ -7,7 +7,7 @@ const initialState = {
 const bookReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'BOOKS_REQUEST':
-            return { ...state, loading: true };
+            return { ...state, loading: true, books: [] };
         case 'BOOKS_SUCCESS':
             return { ...state, loading: false, books: action.payload };
         case 'BOOKS_FAIL':
